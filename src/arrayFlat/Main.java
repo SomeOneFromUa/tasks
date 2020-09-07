@@ -20,7 +20,19 @@ public class Main {
         newList2.add(9);
         newList2.add(10);
         newList2.add(11);
+        ArrayList<Object> newList3 = new
+                ArrayList<>();
+        newList3.add(12);
+        newList3.add(13);
+        newList3.add(14);
+        ArrayList<Object> newList4 = new
+                ArrayList<>();
+        newList4.add(15);
+        newList4.add(16);
+        newList4.add(17);
+        newList3.add(newList4);
         newList1.add(newList2);
+        newList1.add(newList3);
         mainList.add(newList1);
         ArrayList<Object> flatted = arrFlat(mainList, 1);
         System.out.println(flatted);
@@ -28,6 +40,9 @@ public class Main {
         System.out.println(flatted2);
         ArrayList<Object> flatted3 = arrFlat(mainList, 3);
         System.out.println(flatted3);
+        ArrayList<Object> flatted4 = arrFlat(mainList, 4);
+        System.out.println(flatted4);
+
     }
     public static ArrayList<Object> arrFlat(ArrayList<Object> arr, int level) {
         ArrayList<Object> res = new ArrayList<>();
