@@ -22,20 +22,20 @@ public class Main {
         newList2.add(11);
         newList1.add(newList2);
         mainList.add(newList1);
-        ArrayList<Object> processor = processor(mainList, 1);
-        System.out.println(processor);
-        ArrayList<Object> processor2 = processor(mainList, 2);
-        System.out.println(processor2);
-        ArrayList<Object> processor3 = processor(mainList, 3);
-        System.out.println(processor3);
+        ArrayList<Object> flatted = arrFlat(mainList, 1);
+        System.out.println(flatted);
+        ArrayList<Object> flatted2 = arrFlat(mainList, 2);
+        System.out.println(flatted2);
+        ArrayList<Object> flatted3 = arrFlat(mainList, 3);
+        System.out.println(flatted3);
     }
-    public static ArrayList<Object> processor(ArrayList<Object> arr, int level) {
+    public static ArrayList<Object> arrFlat(ArrayList<Object> arr, int level) {
         ArrayList<Object> res = new ArrayList<>();
         Iterator<Object> iterator = arr.iterator();
         for (Object el : arr) {
             if (el.getClass().toString().equals("class java.util.ArrayList")) {
                 if (level > 1) {
-                    ArrayList<Object> processor = processor((ArrayList<Object>) el, level - 1);
+                    ArrayList<Object> processor = arrFlat((ArrayList<Object>) el, level - 1);
                     res.addAll(processor);
                 } else res.add(el);
 
