@@ -31,7 +31,6 @@ public class Main {
     }
     public static ArrayList<Object> arrFlat(ArrayList<Object> arr, int level) {
         ArrayList<Object> res = new ArrayList<>();
-        Iterator<Object> iterator = arr.iterator();
         for (Object el : arr) {
             if (el.getClass().toString().equals("class java.util.ArrayList")) {
                 if (level > 1) {
