@@ -25,7 +25,7 @@ public class Main {
         mainList.add(newList1);
 
 
-        Object[] objects = arrayFlat(mainList, 2);
+        Object[] objects = arrayFlat(mainList, '1');
         print(objects);
 
     }
@@ -52,9 +52,7 @@ public class Main {
             if (arr[i].getClass().toString().equals("class java.util.ArrayList")) {
                 if (level > 1) {
                     Object[] objects = arrayFlat((ArrayList<Object>) arr[i], level - 1);
-                    for (int j = 0; j < objects.length; j++) {
-                        res[i + j] = objects[j];
-                    }
+                    System.arraycopy(objects, 0, res, i + 0, objects.length);
                 } else res[i] = arr[i];
             } else res[i] = arr[i];
         }
@@ -67,9 +65,7 @@ public class Main {
         }
 
         Object[] result = new Object[count];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = res[i];
-        }
+        System.arraycopy(res, 0, result, 0, result.length);
         return result;
     }
 
