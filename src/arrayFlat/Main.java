@@ -21,14 +21,22 @@ public class Main {
         newList2.add(9);
         newList2.add(10);
         newList2.add(11);
+        ArrayList<Object> newList3 = new
+                ArrayList<>();
+        newList3.add(13);
+        newList3.add(14);
+        newList3.add(15);
         newList1.add(newList2);
+        newList1.add(12);
+        newList1.add(newList3);
+        newList1.add(16);
         mainList.add(newList1);
 
-
-        Object[] objects = arrayFlat(mainList, '1');
+        Object[] objects = arrayFlat(mainList, 4);
         print(objects);
 
     }
+    //////////////////////////////////////////////////////////////////////////////////////////
     // for ArrayList
     public static ArrayList<Object> arrFlat(ArrayList<Object> arr, int level) {
         ArrayList<Object> res = new ArrayList<>();
@@ -43,33 +51,43 @@ public class Main {
         }
         return res;
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // for vanilla java arrays (not working with more then one array on one level*)
     public static Object[] arrayFlat (ArrayList<Object> array, int level){
         Object[] arr = array.toArray(new Object[0]);
-        Object[] res = new Object[20];
+        Object[] res = new Object[20]; //hardcoded length*
+        int counter = 0;
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getClass().toString().equals("class java.util.ArrayList")) {
                 if (level > 1) {
                     Object[] objects = arrayFlat((ArrayList<Object>) arr[i], level - 1);
-                    System.arraycopy(objects, 0, res, i + 0, objects.length);
+                    for (int j = 0; j < objects.length; j++) {
+                        res[i + j + counter] = objects[j];
+                    }
+                    counter += objects.length-1;
                 } else res[i] = arr[i];
-            } else res[i] = arr[i];
+            } else res[i + counter] = arr[i];
         }
-
+// making counter for all not Null elements of array
         int count = 0;
         for (Object re : res) {
             if (re != null){
                 count++;
             }
         }
-
+// making result witch is a copy of res array without null elements;
         Object[] result = new Object[count];
-        System.arraycopy(res, 0, result, 0, result.length);
+        for (int i = 0; i < result.length; i++) {
+            result[i] = res[i];
+        }
         return result;
     }
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-
+// just a printer function for vanilla java arrays
     public static void print (Object[] arr) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
